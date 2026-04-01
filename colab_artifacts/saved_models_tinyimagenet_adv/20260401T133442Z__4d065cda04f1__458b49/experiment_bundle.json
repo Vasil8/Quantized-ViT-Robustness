@@ -1,0 +1,106 @@
+{
+  "schema": "tinyimagenet_adv_quant_v1",
+  "created_utc": "2026-04-01T13:50:48.292610+00:00",
+  "experiment_run_id": "20260401T133442Z__4d065cda04f1__458b49",
+  "models_base_dir": "./saved_models_tinyimagenet_adv",
+  "run_directory": "./saved_models_tinyimagenet_adv/20260401T133442Z__4d065cda04f1__458b49",
+  "config_fingerprint_sha256": "7c4908d3af94f0683c125dc0c94c59c4698b1f034147738f423dedb81127c8fc",
+  "config": {
+    "seed": 42,
+    "data_root": "tiny-imagenet-200",
+    "batch_size": 64,
+    "num_workers": 4,
+    "pin_memory": true,
+    "prefetch_factor": 2,
+    "persistent_workers": true,
+    "num_epochs": 10,
+    "lr_head": 0.0001,
+    "lr_base": 2e-05,
+    "weight_decay": 0.05,
+    "weight_decay_head": 0.01,
+    "warmup_epochs": 3,
+    "early_stopping_patience": 3,
+    "use_amp": true,
+    "tf32": true,
+    "epsilons": [
+      0.001,
+      0.005,
+      0.01,
+      0.03,
+      0.05
+    ],
+    "use_subset": false,
+    "train_subset_size": 500,
+    "val_subset_size": 200,
+    "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+    "num_classes": 200,
+    "hybrid_quantize_blocks": [
+      6,
+      12
+    ],
+    "save_models": true,
+    "models_dir": "./saved_models_tinyimagenet_adv/20260401T133442Z__4d065cda04f1__458b49",
+    "repro_artifacts": true,
+    "repro_run_id": null,
+    "repro_git_cwd": null,
+    "adversarial_training": true,
+    "adv_epsilon": 0.01,
+    "adv_alpha": 0.005,
+    "adv_steps": 5,
+    "adv_random_start": true,
+    "github_sync_enabled": true,
+    "github_repo_https": "https://github.com/Vasil8/Quantized-ViT-Robustness.git",
+    "github_branch": "main",
+    "github_token_secret_name": "GITHUB_TOKEN",
+    "github_repo_local_dir": "/content/Quantized-ViT-Robustness",
+    "experiment_variant": "hybrid",
+    "run_finetune": false,
+    "fp32_checkpoint_path": "./saved_models_tinyimagenet_adv/20260401T001910Z__bf7144e5b281__ecb25a/best_model_fp32.pth",
+    "evaluate_branches": [
+      "hybrid"
+    ],
+    "models_base_dir": "./saved_models_tinyimagenet_adv",
+    "experiment_run_id": "20260401T133442Z__4d065cda04f1__458b49",
+    "config_fingerprint_sha256": "7c4908d3af94f0683c125dc0c94c59c4698b1f034147738f423dedb81127c8fc"
+  },
+  "dataset_sizes": {
+    "train": 100000,
+    "val": 10000
+  },
+  "device": "cuda",
+  "environment": {
+    "python": "3.12.13 (main, Mar  4 2026, 09:23:07) [GCC 11.4.0]",
+    "platform": "Linux-6.6.113+-x86_64-with-glibc2.35",
+    "packages": {
+      "torch": "2.10.0+cu128",
+      "torchvision": "0.25.0+cu128",
+      "timm": "1.0.25",
+      "foolbox": "3.3.4",
+      "torchao": "0.10.0",
+      "numpy": "2.0.2",
+      "eagerpy": "0.30.0",
+      "pandas": "2.2.2"
+    },
+    "cuda": {
+      "torch_cuda_version": "12.8",
+      "device_name": "Tesla T4",
+      "cudnn_enabled": true,
+      "cudnn_version": 91002
+    }
+  },
+  "git": {
+    "available": false,
+    "reason": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "results": {
+    "Hybrid (blocks 6-11 INT8)": {
+      "clean": 0.7905,
+      "eps=0.001": 0.7604,
+      "eps=0.005": 0.6294,
+      "eps=0.01": 0.461,
+      "eps=0.03": 0.1262,
+      "eps=0.05": 0.0502
+    }
+  },
+  "evaluation_note": "FGSM в [0,1] через Foolbox; обучение с PGD в нормализованном пространстве. Для NT-сравнения указывать обе постановки."
+}

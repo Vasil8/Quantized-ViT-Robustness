@@ -1,0 +1,4 @@
+run_id: 20260401T001910Z__bf7144e5b281__ecb25a
+config_sha256: 886d90a3b5770bd416222a50925604a7d273884a44d3ce33c62103851543ee7f
+bundle: ./saved_models_tinyimagenet_adv/20260401T001910Z__bf7144e5b281__ecb25a/experiment_bundle.json
+device: cuda
